@@ -41,4 +41,3 @@ Workday:David Duffied,WDAY,CapeClear,Identified,Gridcraft,Upshot,Mediacore,Zapti
 Visa:Visanet,visa
 
 Stryker:SYK,Homer Stryker,Kevin A. Lobo,Kalamazoo, Michigan,The Orthopedic Frame Company
-

@@ -20,6 +20,7 @@ def format_text_to_company_objects(text):
     company_list = []
 
     for company in companies:
+        print(company)
         split_company = company.split(':')
         name = split_company[0]
         keyword_string = split_company[1]
