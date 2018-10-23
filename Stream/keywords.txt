@@ -1,0 +1,29 @@
+Google:Google,GOOGL,Google search,Google chrome,Chrome,Gmail,Google Docs,Android,Blogger,Google drive,Google translate,Google ads,Chromebook,Chrome book,Adsense,Google Fiber,Google Pixel,Pixel,Google Glass,Google classroom,Google images,Google maps
+
+Salesforce:Salesforce,CRM,Dreamforce,Marc Benioff,Sales Cloud,Service Cloud,Marketing Cloud,Commerce Cloud,Heroku Cloud,Heroku,Heroku cloud services,Salesforce platform,Mulesoft,Mulesoft Anypoint,Einstein analytics,Community Cloud,myTrailhead
+
+Apple:Apple,AAPL,iPhone,Macbook,Macbook,iOS,iPad,Apple Watch,Touch bar,Touchbar,iMac,Airpods,Airpod,HomePod,Apple TV,iPod,MacOS,Mac,Mac OS,Mac OSX,OS X,Tim Cook,Steve Jobs
+
+Nike:Nike,NKE,Nike+,Jordans,Air Jordan,Nike Air,Nike Air Force,Just Do It,JustDoIt,Nike Air Max,Nike Air Presto,Nike React
+
+Netflix:Netflix,NFLX,Netflix and chill,Netflix n chill,Bojack Horseman,Narcos,Orange is the new black,OITNB,Stranger Things,Mindhunter,The Crown,Master of None,Sense8,Kimmy Schmidt,House of Cards,The OA
+
+Under Armour:Under armour,WeWill,UAA
+
+JP Morgan Chase:JP Morgan,JMPC,JPM,Chase Bank,Jamie Dimon,Chase Debit,Chase Credit
+
+Adobe:Adobe,ADBE,Photoshop,Adobe Illustrator,Premiere Pro,Dreamweaver,Creative Cloud,Adobe Creative Suite,InDesign,Adobe After Effects,Adobe Flash,Flash Player,Adobe Audition,Adobe Muse,Adobe Acrobat
+
+Uber:uber,uber driver,uber ride,uberx,uberxl,uber self-driving cars,volvo xc90,uberpool,uber eats,express pool
+
+Time Warner:time warner,warner media,warner bros,hbo,cnn,turner,dc comics,otter media,the cw,hulu
+
+NBC:nbc,national broadcasting company,nbcuniversal,comcast,peacock network,nbc red network,nbc blue network,nbc chimes,abc,american broadcasting company,nbc news
+
+Dell:dell,dell laptop,inspiron,latitude,vostro,xps,chromebook,g series,alienware,inspiron chromebook,dell monitors,optiplex,dimension,n seris,precision,poweredge,venue
+
+Twitter:twitter,tweets,hashtags,twitter verified accounts,twitter pools,twitter streaming video,t.co,twitterbots,twiter memes
+
+Blackrock:blackrock,blackrock investment,blackrock asset management,blackrock air lab,blackrock bitcoin,blackrock blockchain,blackrock solutions,laurence fink
+
+Capital One:capital one,capital one 360,capital one investing,capital one venture,capital one consumer banking,capital one credit cards,capital one commercial banking,capital one tower
