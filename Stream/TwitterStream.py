@@ -4,6 +4,7 @@ import ProcessCompanyKeywords as ProcessKeywords
 from StoreDetails import save_dill, load_dill
 
 
+tweets = []
 
 
 class Streamer(tweepy.StreamListener):
@@ -29,8 +30,9 @@ class Streamer(tweepy.StreamListener):
 
     def on_status(self, status):
         #handle status
-        if should_track(status):
+        if should_track(keyword_list, status):
             try:
+                0
                 print(status.text)
             except:
                 None
@@ -39,18 +41,18 @@ class Streamer(tweepy.StreamListener):
 
 
 
-def should_track(status):
+def should_track(keywords, status):
     text = status.text.lower()
 
     if 'rt' in text:
         return False
-    elif keywords_in_text(text):
+    elif keywords_in_text(keywords, text):
         return True
     else:
         return False
 
-def keywords_in_text(text):
-    for keyword in company_to_track.keywords:
+def keywords_in_text(keywords, text):
+    for keyword in keywords:
         if keyword.lower() in text:
             return True
     return False
@@ -106,7 +108,7 @@ def login(api_file_name='cached_api.dl'):
         return cached_api
     else:
         api = authenticate_with_browser(consumer_key, consumer_secret)
-        save_dill(api, 'cached_api.dl')
+        save_dill(api, api_file_name)
         return api
 
 
@@ -122,7 +124,14 @@ def create_stream(api, keywords):
 api = login()
 # list_of_companies = ProcessKeywords.load_companies_from_file('keywords.txt')
 
-company_to_track = ProcessKeywords.find_company('apple')
+keyword_list = []
 
-create_stream(api, company_to_track.keywords)
+keyword_list.extend(ProcessKeywords.find_company('nike').keywords)
+keyword_list.extend(ProcessKeywords.find_company('apple').keywords)
+keyword_list.extend(ProcessKeywords.find_company('tesla').keywords)
+keyword_list.extend(ProcessKeywords.find_company('netflix').keywords)
+keyword_list.extend(ProcessKeywords.find_company('google').keywords)
+
+
+create_stream(api, keyword_list)
 # print(company_to_track.keywords)

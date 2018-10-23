@@ -6,6 +6,13 @@ class Company:
         self.active = active
 
 
+class Tweet:
+
+    def __init__(self, tweet_text):
+        #tweet text, username, time, fave count, linked URL?, tweet_id
+        0
+
+
 
 
 
@@ -20,7 +27,6 @@ def format_text_to_company_objects(text):
     company_list = []
 
     for company in companies:
-        print(company)
         split_company = company.split(':')
         name = split_company[0]
         keyword_string = split_company[1]
