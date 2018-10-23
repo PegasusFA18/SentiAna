@@ -121,13 +121,6 @@ def create_stream(api, keywords):
 
 api = login()
 # list_of_companies = ProcessKeywords.load_companies_from_file('keywords.txt')
-#
-# keywords = []
-#
-# for company in list_of_companies:
-#     keywords.extend(company.keywords)
-#
-# create_stream(api, ['iphone', 'facebook'])
 
 company_to_track = ProcessKeywords.find_company('apple')
 

@@ -59,5 +59,5 @@ def load_companies_from_file(filename):
 if __name__ == '__main__':
     list_of_companies = load_companies_from_file('keywords.txt')
 
-    for comp in list_of_companies:
-        print(comp.keywords)
+    # for comp in list_of_companies:
+    #     print(comp.keywords)
