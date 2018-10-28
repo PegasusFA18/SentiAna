@@ -40,6 +40,6 @@ def load_dill(file_name):
 
 def save_dill(obj, file_name):
     program_path = os.path.dirname(os.path.realpath("__file__"))
-    print('saving: ' + file_name + ' at path: ' + str(program_path))
+    # print('saving: ' + file_name + ' at path: ' + str(program_path))
     file = open(program_path + '/' + file_name, "wb")
     dill.dump(obj, file)

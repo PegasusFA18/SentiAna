@@ -1,10 +1,15 @@
 import tweepy
 import webbrowser
 import ProcessCompanyKeywords as ProcessKeywords
+from ProcessCompanyKeywords import Tweet
 from StoreDetails import save_dill, load_dill
+from datetime import datetime, timedelta
+import time
 
 
 tweets = []
+time_to_end_stream = datetime.now() + timedelta(seconds=60*60)
+length_of_stream = 60*60
 
 
 class Streamer(tweepy.StreamListener):
@@ -29,13 +34,21 @@ class Streamer(tweepy.StreamListener):
         print(status)
 
     def on_status(self, status):
-        #handle status
-        if should_track(keyword_list, status):
-            try:
-                0
-                print(status.text)
-            except:
-                None
+        global time_to_end_stream
+        global tweets
+        global length_of_stream
+
+        if datetime.now() >= time_to_end_stream:
+            now = datetime.now().strftime("%Y-%B-%d--%H-%M (" + str(length_of_stream) + ' secs).dl')
+            save_dill(tweets, now)
+            print('saving', len(tweets), 'tweets as', now)
+            return False
+        else:
+            if should_track(keyword_list, status):
+                try:
+                    tweets.append(Tweet(status))
+                except Exception as err:
+                    print('error saving tweet:', status, err)
 
 
 
@@ -99,8 +112,8 @@ def authenticate_with_browser(consumer_key, consumer_secret):
 
 
 def login(api_file_name='cached_api.dl'):
-    consumer_key = 'gdbs2XKFHWuJYaUXMDlaXUYhh'
-    consumer_secret = 'e42si7oOZbacjHow01vNWdyaFHLIGUW1hks8DK1PlQd11z88ey'
+    consumer_key = 'XXX'
+    consumer_secret = 'XXX'
 
     cached_api = load_dill(api_file_name)
 
@@ -114,24 +127,33 @@ def login(api_file_name='cached_api.dl'):
 
 
 
-def create_stream(api, keywords):
+def create_stream(api, keywords, seconds_to_run_for=60*60):
+    global time_to_end_stream
+    global length_of_stream
+
+    length_of_stream = seconds_to_run_for
+    time_to_end_stream = get_time_in_future(seconds_to_run_for)
     stream = tweepy.Stream(api.auth, Streamer())
     stream.filter(track=keywords, async=True, stall_warnings=True, languages=['en'])
 
 
+def get_time_in_future(how_many_seconds):
+    return datetime.now() + timedelta(seconds=how_many_seconds)
 
 
-api = login()
-# list_of_companies = ProcessKeywords.load_companies_from_file('keywords.txt')
 
-keyword_list = []
+if __name__ == '__main__':
 
-keyword_list.extend(ProcessKeywords.find_company('nike').keywords)
-keyword_list.extend(ProcessKeywords.find_company('apple').keywords)
-keyword_list.extend(ProcessKeywords.find_company('tesla').keywords)
-keyword_list.extend(ProcessKeywords.find_company('netflix').keywords)
-keyword_list.extend(ProcessKeywords.find_company('google').keywords)
+    api = login() #login as @_the_bitchqueen
+
+    keyword_list = []
+
+    keyword_list.extend(ProcessKeywords.find_company('nike').keywords)
+    keyword_list.extend(ProcessKeywords.find_company('apple').keywords)
+    keyword_list.extend(ProcessKeywords.find_company('tesla').keywords)
+    keyword_list.extend(ProcessKeywords.find_company('netflix').keywords)
+    keyword_list.extend(ProcessKeywords.find_company('google').keywords)
 
 
-create_stream(api, keyword_list)
-# print(company_to_track.keywords)
+    create_stream(api, keyword_list, 10)
+    # print(company_to_track.keywords)

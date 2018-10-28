@@ -8,9 +8,25 @@ class Company:
 
 class Tweet:
 
-    def __init__(self, tweet_text):
+    def __init__(self, tweet_object):
         #tweet text, username, time, fave count, linked URL?, tweet_id
-        0
+        self.text = tweet_object.text
+        self.username = tweet_object.user.screen_name
+        self.time = tweet_object.created_at
+        self.tweet_id = tweet_object.id
+        self.user_followers = tweet_object.user.followers_count
+        self.user_following = tweet_object.user.friends_count
+        self.user_status_count = tweet_object.user.statuses_count
+        self.user_location = tweet_object.user.location
+
+
+    def __repr__(self):
+        str_to_show = '['
+
+        for obj_key in self.__dict__.keys():
+            str_to_show += obj_key + ':' + str(self.__dict__[obj_key]) + ', '
+
+        return str_to_show[:len(str_to_show) - 2] + ']'
 
 
 
