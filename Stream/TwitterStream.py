@@ -112,8 +112,8 @@ def authenticate_with_browser(consumer_key, consumer_secret):
 
 
 def login(api_file_name='cached_api.dl'):
-    consumer_key = 'XXX'
-    consumer_secret = 'XXX'
+    consumer_key = 'gdbs2XKFHWuJYaUXMDlaXUYhh'
+    consumer_secret = 'e42si7oOZbacjHow01vNWdyaFHLIGUW1hks8DK1PlQd11z88ey'
 
     cached_api = load_dill(api_file_name)
 
