@@ -1,3 +1,5 @@
+from Classify_Tweets import *
+
 class Company:
 
     def __init__(self, name='', keywords=[], active=True):
@@ -18,6 +20,14 @@ class Tweet:
         self.user_following = tweet_object.user.friends_count
         self.user_status_count = tweet_object.user.statuses_count
         self.user_location = tweet_object.user.location
+        self.sentiment_analysis_of_tweet()
+        
+    
+    def sentiment_analysis_of_tweet(self):
+        classification, polarity, subjectivity  = get_tweet_sentiment(self.text)
+        self.classification = classification
+        self.polarity = polarity
+        self.subjectivity = subjectivity
 
 
     def __repr__(self):

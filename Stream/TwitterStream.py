@@ -39,16 +39,18 @@ class Streamer(tweepy.StreamListener):
         global length_of_stream
 
         if datetime.now() >= time_to_end_stream:
-            now = datetime.now().strftime("%Y-%B-%d--%H-%M (" + str(length_of_stream) + ' secs).dl')
-            save_dill(tweets, now)
+            now = datetime.now().strftime("%Y-%B-%d--%Hh-%Mm (" + str(length_of_stream) + ' secs).dl')
+            save_dill(tweets, 'cached_tweets/' + now)
             print('saving', len(tweets), 'tweets as', now)
             return False
         else:
             if should_track(keyword_list, status):
                 try:
                     tweets.append(Tweet(status))
+                    str_to_display = 'Tweets Captured: {}'.format(len(tweets))
+                    print(str_to_display, end='\r', flush=True)
                 except Exception as err:
-                    print('error saving tweet:', status, err)
+                    print('error saving tweet:', err)
 
 
 
@@ -135,6 +137,7 @@ def create_stream(api, keywords, seconds_to_run_for=60*60):
     time_to_end_stream = get_time_in_future(seconds_to_run_for)
     stream = tweepy.Stream(api.auth, Streamer())
     stream.filter(track=keywords, async=True, stall_warnings=True, languages=['en'])
+    
 
 
 def get_time_in_future(how_many_seconds):
@@ -148,12 +151,15 @@ if __name__ == '__main__':
 
     keyword_list = []
 
-    keyword_list.extend(ProcessKeywords.find_company('nike').keywords)
-    keyword_list.extend(ProcessKeywords.find_company('apple').keywords)
-    keyword_list.extend(ProcessKeywords.find_company('tesla').keywords)
-    keyword_list.extend(ProcessKeywords.find_company('netflix').keywords)
+    # keyword_list.extend(ProcessKeywords.find_company('nike').keywords)
+    # keyword_list.extend(ProcessKeywords.find_company('apple').keywords)
+    # keyword_list.extend(ProcessKeywords.find_company('tesla').keywords)
+    # keyword_list.extend(ProcessKeywords.find_company('netflix').keywords)
     keyword_list.extend(ProcessKeywords.find_company('google').keywords)
 
 
-    create_stream(api, keyword_list, 10)
+    create_stream(
+        api=api, 
+        keywords=keyword_list, 
+        seconds_to_run_for=10)
     # print(company_to_track.keywords)

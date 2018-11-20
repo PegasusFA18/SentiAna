@@ -43,7 +43,7 @@ def classify(input_tweet):
                for fileid in movie_reviews.fileids(category)]
   random.shuffle(documents)
 
-  documents.append((input_tweet, unicode('pos')))
+  documents.append((input_tweet, str('pos')))
   print("Added {} tweets".format(input_tweet))  
 
   all_words = []
@@ -119,5 +119,15 @@ def classify(input_tweet):
   # print("Classification:", voted_classifier.classify(testing_set[2][0]), "Confidence %:",voted_classifier.confidence(testing_set[2][0])*100)
   # print("Classification:", voted_classifier.classify(testing_set[3][0]), "Confidence %:",voted_classifier.confidence(testing_set[3][0])*100)
   # print("Classification:", voted_classifier.classify(testing_set[4][0]), "Confidence %:",voted_classifier.confidence(testing_set[4][0])*100)
+  def classification_model(text):
+      classification = voted_classifier.classify(testing_set[-1][0])
+      confidence = voted_classifier.confidence(testing_set[5][0])*100
+      return classification, confidence
+  print(testing_set[-1][0])
+  print(testing_set[5][0])
   print("Classification:", voted_classifier.classify(testing_set[-1][0]), "Confidence %:",voted_classifier.confidence(testing_set[5][0])*100)
   #print("Classification:", voted_classifier.classify("It's a good movie."), "Confidence %:",voted_classifier.confidence(testing_set[4][0])*100)
+  return classification_model
+  
+if __name__ == '__main__':
+    print('hi')
