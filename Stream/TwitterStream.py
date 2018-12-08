@@ -48,7 +48,7 @@ class Streamer(tweepy.StreamListener):
                 try:
                     tweets.append(Tweet(status))
                     str_to_display = 'Tweets Captured: {}'.format(len(tweets))
-                    print(str_to_display, end='\r', flush=True)
+                    print(str_to_display)
                 except Exception as err:
                     print('error saving tweet:', err)
 
@@ -137,6 +137,7 @@ def create_stream(api, keywords, seconds_to_run_for=60*60):
     time_to_end_stream = get_time_in_future(seconds_to_run_for)
     stream = tweepy.Stream(api.auth, Streamer())
     stream.filter(track=keywords, async=True, stall_warnings=True, languages=['en'])
+    return tweets
     
 
 
@@ -154,12 +155,12 @@ if __name__ == '__main__':
     # keyword_list.extend(ProcessKeywords.find_company('nike').keywords)
     # keyword_list.extend(ProcessKeywords.find_company('apple').keywords)
     # keyword_list.extend(ProcessKeywords.find_company('tesla').keywords)
-    # keyword_list.extend(ProcessKeywords.find_company('netflix').keywords)
-    keyword_list.extend(ProcessKeywords.find_company('google').keywords)
+    keyword_list.extend(ProcessKeywords.find_company('netflix').keywords)
+    # keyword_list.extend(ProcessKeywords.find_company('google').keywords)
 
 
-    create_stream(
+    tweet_list = create_stream(
         api=api, 
         keywords=keyword_list, 
-        seconds_to_run_for=10)
+        seconds_to_run_for=2*60)
     # print(company_to_track.keywords)
